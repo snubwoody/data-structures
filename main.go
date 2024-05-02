@@ -3,6 +3,8 @@ package main
 import "fmt"
 
 /*
+	Binary Search Tree
+
 	Rules:
 	1. All end nodes have to have the same height
 	2. Lower values are pushed to the left, higher to the right
@@ -10,27 +12,29 @@ import "fmt"
 */
 
 func main() {
-	btree := BinaryTree{nodes: nil}
+	btree := BST{root: nil}
 	btree.insert(20)
 	fmt.Println(btree)
 }
 
 //TODO make this an array of 2 instead of a slice
-type BTNode struct {
+type BSTNode struct {
 	value int
-	left  *BTNode
-	right *BTNode
+	left  *BSTNode
+	right *BSTNode
 }
 
-type BinaryTree struct {
-	nodes []*BTNode
+type BST struct {
+	root *BSTNode
 }
 
-func (btree *BinaryTree) insert(value int) {
-	node := BTNode{
-		value: value,
-		left:  nil,
-		right: nil,
+func (btree *BST) insert(value int) {
+	if btree.root == nil {
+		btree.root = &BSTNode{
+			value: value,
+			left:  nil,
+			right: nil,
+		}
+		return
 	}
-	btree.nodes = append(btree.nodes, &node)
 }
